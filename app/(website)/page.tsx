@@ -1,19 +1,15 @@
-import { features } from "@/components/home/data/features";
 import { footerGroups, socialIcons } from "@/components/home/data/footerGroups";
-import FeatureCard from "@/components/home/FeatureCard";
 import FooterLinkGroup from "@/components/home/FooterLinkGroup";
 import ImageCard from "@/components/home/ImageCard";
-import Navigation from "@/components/home/Navigation";
 import NewsletterForm from "@/components/home/NewsletterForm";
-import PricingPlan from "@/components/home/PricingPlan";
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import Link from "next/link";
@@ -123,8 +119,19 @@ export default function Home() {
                         </p>
                       </div>
                       <div className="flex gap-4 items-start self-start mt-8 text-base">
-                        <Button variant="default">Get Started</Button>
-                        <Button variant="secondary">Learn More</Button>
+                        <Button
+                          size="lg"
+                          className="bg-blue-600 text-white hover:bg-blue-700"
+                        >
+                          Get Started
+                        </Button>
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="border-blue-400  hover:bg-blue-900/50"
+                        >
+                          Learn More
+                        </Button>
                       </div>
                     </div>
                     <div className="flex relative flex-1 shrink gap-4 items-start my-auto basis-20 min-h-[900px] min-w-[240px] max-md:max-w-full">
