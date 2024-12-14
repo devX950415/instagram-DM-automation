@@ -5,13 +5,16 @@ import { PAGE_BREAD_CRUMBS } from "@/constants/pages";
 import { usePath } from "@/hooks/user-nav";
 import { HelpDuoToneWhite } from "@/icons";
 import { LogoSmall } from "@/svgs/logo-small";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import ClerkAuthState from "../clerk-auth-state";
 import CreateAutomation from "../create-automation";
 import Sheet from "../sheet";
 import Items from "../sidebar/items";
 import UpgradeCard from "../sidebar/upgrade";
 import SubscriptionPlan from "../subscription-plan";
+import Notification from "./notification";
+import Search from "./search";
+import MainBreadCrumbs from "../main-bread-crumbs";
 
 type Props = {
   slug: string;
@@ -60,7 +63,9 @@ function NavBar({ slug }: Props) {
           </span>
           <Search />
           <CreateAutomation />
+          <Notification />
         </div>
+        <MainBreadCrumbs page={page === slug ? "Home" : page} slug={slug} />
       </div>
     )
   );
