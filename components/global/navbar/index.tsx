@@ -14,7 +14,7 @@ import UpgradeCard from "../sidebar/upgrade";
 import SubscriptionPlan from "../subscription-plan";
 import Notification from "./notification";
 import Search from "./search";
-import MainBreadCrumbs from "../main-bread-crumbs";
+import MainBreadCrumbs from "../bread-crumb/main-bread-crumbs";
 
 type Props = {
   slug: string;
