@@ -18,22 +18,22 @@ type SIDEBAR_MENU_TYPE = {
 export const SIDEBAR_MENU: SIDEBAR_MENU_TYPE[] = [
   {
     id: uuid(),
-    label: "Home",
+    label: "home",
     icon: <HomeDuoToneWhite />,
   },
   {
     id: uuid(),
-    label: "Automation",
+    label: "automation",
     icon: <AutomationDuoToneWhite />,
   },
   {
     id: uuid(),
-    label: "Integrations",
+    label: "integrations",
     icon: <RocketDuoToneWhite />,
   },
   {
     id: uuid(),
-    label: "Settings",
+    label: "settings",
     icon: <SettingsDuoToneWhite />,
   },
 ];
