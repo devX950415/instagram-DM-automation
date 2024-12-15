@@ -2,14 +2,16 @@
 
 import { client } from "@/lib/prisma";
 
-export const createAutomation = async (clerkId: string) => {
+export const createAutomation = async (clerkId: string, id?: string) => {
   return await client.user.update({
     where: {
       clerkId,
     },
     data: {
       automations: {
-        create: {},
+        create: {
+          ...(id && { id }),
+        },
       },
     },
   });
@@ -28,6 +30,66 @@ export const getAutomation = async (clerkId: string) => {
         include: {
           keywords: true,
           listener: true,
+        },
+      },
+    },
+  });
+};
+
+export const findAutomation = async (id: string) => {
+  return await client.automation.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      keywords: true,
+      trigger: true,
+      posts: true,
+      listener: true,
+      User: {
+        select: {
+          subscription: true,
+          integrations: true,
+        },
+      },
+    },
+  });
+};
+
+export const updateAutomation = async (
+  automationId: string,
+  update: {
+    name?: string;
+    active?: boolean;
+  }
+) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      name: update.name,
+      active: update.active,
+    },
+  });
+};
+
+export const addListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      listener: {
+        create: {
+          listener,
+          prompt,
+          commentReply: reply,
         },
       },
     },
