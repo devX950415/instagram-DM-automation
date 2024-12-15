@@ -10,7 +10,23 @@ type Props = {
 };
 
 function Trigger({ id }: Props) {
-  const { data } = useQueryAutomations(id);
+  /*  const { data } = useQueryAutomations(id); */
+
+  const data = {
+    data: {
+      trigger: [
+        {
+          type: "COMMENTS",
+        },
+      ],
+      keywords: [
+        { id: "1", word: "hello", automationId: "M001" },
+        { id: "2", word: "welcome", automationId: null },
+        { id: "3", word: "thank you", automationId: "M003" },
+      ],
+      listener: null,
+    },
+  };
 
   if (data?.data && data?.data?.trigger?.length > 0) {
     return (
@@ -36,7 +52,7 @@ function Trigger({ id }: Props) {
             keywords={data.data.keywords}
           />
         </>
-        <ThenActions id={id} />
+        {!data.data.listener && <ThenActions id={id} />}
       </div>
     );
   }
