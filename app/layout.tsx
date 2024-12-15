@@ -1,4 +1,5 @@
 import ReactQueryProvider from "@/providers/react-query-provider";
+import ReduxProvider from "@/providers/redux-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
@@ -28,7 +29,10 @@ export default function RootLayout({
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <ReduxProvider>
+              <ReactQueryProvider>{children}</ReactQueryProvider>
+            </ReduxProvider>
+
             <Toaster />
           </ThemeProvider>
         </body>

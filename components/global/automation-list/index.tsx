@@ -6,6 +6,7 @@ import { usePath } from "@/hooks/user-nav";
 import { useQueryAutomation } from "@/hooks/user-queries";
 import { cn, getMonth } from "@/lib/utils";
 import Link from "next/link";
+import { useMemo } from "react";
 import CreateAutomation from "../create-automation";
 import GradientButton from "../gradient-button";
 
@@ -14,8 +15,8 @@ type Props = {};
 function AutomationList({}: Props) {
   const { data } = useQueryAutomation();
 
-  const { latestVariables } = useMutationDataState(["create-automation"]);
-  console.log("🚀 ~ AutomationList ~ latestVariables:", latestVariables);
+  const { latestVariable } = useMutationDataState(["create-automation"]);
+  // console.log("🚀 ~ AutomationList ~ latestVariables:", latestVariables);
 
   const { pathname } = usePath();
 
@@ -28,9 +29,17 @@ function AutomationList({}: Props) {
     );
   }
 
+  const optimisticUiData = useMemo(() => {
+    if (latestVariable && latestVariable?.variables && data) {
+      const newData = [latestVariable.variables, ...data.data];
+      return { data: newData };
+    }
+    return data || { data: [] };
+  }, [latestVariable, data.data]);
+
   return (
     <div className="flex flex-col gap-y-3">
-      {data.data!.map((automation) => (
+      {optimisticUiData.data!.map((automation) => (
         <Link
           href={`${pathname}/${automation.id}`}
           key={automation.id}
