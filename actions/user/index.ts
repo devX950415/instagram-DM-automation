@@ -76,6 +76,6 @@ export const onUserInfo = async () => {
 
     return { status: 404 };
   } catch (error: any) {
-    return { status: 500, data: error.message };
+    return { status: 500 };
   }
 };
