@@ -9,7 +9,7 @@ function Keywords({ id }: Props) {
   const { deleteMutation, keywords, onKeyPress, onValueChange } =
     useKeywords(id);
 
-  return <div>Keywords</div>;
+  return <div className="">Keywords</div>;
 }
 
 export default Keywords;
