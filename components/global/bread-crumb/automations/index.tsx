@@ -61,7 +61,7 @@ function AutomationBreadCrumb({ id }: Props) {
           <p className="text-text-secondary text-sm">Undo | Redo</p>
         </div>
       </div>
-      <ActiveAutomationButton />
+      <ActiveAutomationButton id={id} />
     </div>
   );
 }

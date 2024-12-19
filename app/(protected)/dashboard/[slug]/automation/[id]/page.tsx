@@ -1,5 +1,7 @@
 import { getAutomationInfo } from "@/actions/automation";
 import AutomationBreadCrumb from "@/components/global/bread-crumb/automations";
+import PostNode from "@/components/global/bread-crumb/automations/post/node";
+import ThenNode from "@/components/global/bread-crumb/automations/then/node";
 import Trigger from "@/components/global/bread-crumb/automations/trigger";
 import { Warning } from "@/icons";
 import { PrefetchUserAutomations } from "@/react-query/prefetch";
@@ -37,6 +39,8 @@ async function Page({ params }: Props) {
           </div>
           <Trigger id={params.id} />
         </div>
+        <ThenNode id={params.id} />
+        <PostNode id={params.id} />
       </div>
     </HydrationBoundary>
   );

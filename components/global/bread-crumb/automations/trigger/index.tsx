@@ -1,11 +1,13 @@
 "use client";
 
+import Loader from "@/components/global/loader";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AUTOMATION_TRIGGERS } from "@/constants/automation";
 import { useTrigger } from "@/hooks/use-automation";
 import { useQueryAutomations } from "@/hooks/user-queries";
 import { cn } from "@/lib/utils";
-import ThenActions from "../then-actions";
+import ThenActions from "../then/then-actions";
 import TriggerButton from "../trigger-button";
 import ActiveTrigger from "./active";
 import Keywords from "./keywords";
@@ -16,6 +18,7 @@ type Props = {
 
 function Trigger({ id }: Props) {
   const { isPending, onSaveTrigger, onSetTrigger, types } = useTrigger(id);
+  console.log("🚀 ~ Trigger ~ types:", types);
   const { data } = useQueryAutomations(id);
 
   /*   const data = {
@@ -87,9 +90,17 @@ function Trigger({ id }: Props) {
           </div>
         ))}
         <Keywords id={id} />
+        <Button
+          onClick={onSaveTrigger}
+          disabled={types?.length === 0}
+          className="bg-gradient-to-br from-[#3352CC] font-medium text-white to-[#1C2D70]"
+        >
+          <Loader state={isPending}>Create Trigger</Loader>
+        </Button>
       </div>
     </TriggerButton>
   );
 }
 
+//6.55
 export default Trigger;
