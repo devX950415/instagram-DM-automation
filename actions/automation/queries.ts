@@ -97,6 +97,7 @@ export const addListener = async (
 };
 
 export const addTrigger = async (automationId: string, trigger: string[]) => {
+  console.log("🚀 ~ addTrigger ~ automationId:", automationId);
   if (trigger.length === 2) {
     return await client.automation.update({
       where: {
@@ -142,9 +143,33 @@ export const addKeyWords = async (automationId: string, keywords: string) => {
 };
 
 export const deleteKeywordsQuery = async (automationId: string) => {
-  return await client.automation.delete({
+  // console.log("🚀 ~ deleteKeywordsQuery ~ automationId:", automationId);
+  return await client.keyword.delete({
     where: {
       id: automationId,
+    },
+  });
+};
+
+export const addPosts = async (
+  automationId: string,
+  posts: {
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+  }[]
+) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      posts: {
+        createMany: {
+          data: posts,
+        },
+      },
     },
   });
 };

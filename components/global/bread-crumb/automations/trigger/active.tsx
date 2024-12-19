@@ -14,16 +14,16 @@ function ActiveTrigger({ type, keywords }: Props) {
   return (
     <div className="bg-background-80 p-3 rounded-xl w-full">
       <div className="flex gap-x-2 items-center">
-        {type == "COMMENTS" ? <InstagramBlue /> : <PlaneBlue />}
+        {type == "COMMENT" ? <InstagramBlue /> : <PlaneBlue />}
         <p className="text-lg">
-          {type == "COMMENTS"
+          {type == "COMMENT"
             ? "User Comments on my post"
             : "User Sends me a direct message"}
         </p>
       </div>
       <p className="text-text-secondary">
-        {type == "COMMENTS"
-          ? "If the user comments on a video that is setup to listen for keyworks, this automation will fire"
+        {type == "COMMENT"
+          ? "If the user comments on a video that is setup to listen for keywords, this automation will fire"
           : "If the user send your a message that contains a keyword, this automation will fire"}
       </p>
       <div className="flex gap-2 mt-5 flex-wrap">

@@ -1,9 +1,11 @@
 "use server";
 
 import { onCurrentUser } from "../user";
+import { findUser } from "../user/queries";
 import {
   addKeyWords,
   addListener,
+  addPosts,
   addTrigger,
   createAutomation,
   deleteKeywordsQuery,
@@ -128,5 +130,64 @@ export const deleteKeywords = async (automationId: string) => {
     return { status: 404, data: "Failed to delete keywords" };
   } catch (error) {
     return { status: 500, data: "Failed to delete keywords" };
+  }
+};
+
+export const getProfilePosts = async () => {
+  const user = await onCurrentUser();
+
+  try {
+    const profile = await findUser(user.id);
+    const posts = await fetch(
+      `${process.env.INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_url,media_type,timestamp&limit=10&access_token=${profile?.integrations[0].token}`
+    );
+
+    const parsed = await posts.json();
+
+    if (parsed) return { status: 200, data: parsed };
+    console.log("🚀 ~ getProfilePosts ~ error");
+    return { status: 404 };
+  } catch (error: any) {
+    console.log("🚀 ~ getProfilePosts ~ error:", error.message);
+
+    return { status: 500 };
+  }
+};
+
+export const savePosts = async (
+  automationId: string,
+  posts: {
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+  }[]
+) => {
+  await onCurrentUser();
+
+  try {
+    const create = await addPosts(automationId, posts);
+
+    if (create) return { status: 200, data: "Posts created" };
+    return { status: 404, data: "Failed to create posts" };
+  } catch (error) {
+    return { status: 500, data: "Failed to save posts" };
+  }
+};
+
+export const activateAutomation = async (id: string, status: boolean) => {
+  await onCurrentUser();
+
+  try {
+    const activate = await updateAutomation(id, { active: status });
+    if (activate) {
+      return {
+        status: 200,
+        data: `Automation ${status ? "activated" : "deactivated"}`,
+      };
+    }
+    return { status: 404, data: "Failed to activate automation" };
+  } catch (error) {
+    return { status: 500, data: "Failed to activate automation" };
   }
 };

@@ -3,6 +3,7 @@ import {
   deleteKeywords,
   saveKeywords,
   saveListener,
+  savePosts,
   saveTrigger,
   updateAutomationName,
 } from "@/actions/automation";
@@ -99,7 +100,7 @@ export const useTrigger = (id: string) => {
 
   const { isPending, mutate } = useMutationData(
     ["add-trigger"],
-    (data: { type: string[] }) => saveTrigger(id, data.type),
+    (data: { types: string[] }) => saveTrigger(id, data.types),
     "automation-info"
   );
 
@@ -136,4 +137,38 @@ export const useKeywords = (id: string) => {
   );
 
   return { keywords, onValueChange, onKeyPress, deleteMutation };
+};
+
+export const useAutomationPosts = (id: string) => {
+  const [posts, setPosts] = useState<
+    {
+      postid: string;
+      caption?: string;
+      media: string;
+      mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+    }[]
+  >([]);
+
+  const onSelectPost = (post: {
+    postid: string;
+    caption?: string;
+    media: string;
+    mediaType: "IMAGE" | "VIDEO" | "CAROSEL_ALBUM";
+  }) => {
+    setPosts((prev) => {
+      if (prev.find((p) => p.postid === post.postid)) {
+        return prev.filter((p) => p.postid !== post.postid);
+      } else {
+        return [...prev, post];
+      }
+    });
+  };
+
+  const { isPending, mutate } = useMutationData(
+    ["attach-posts"],
+    () => savePosts(id, posts),
+    "automation-info",
+    () => setPosts([])
+  );
+  return { onSelectPost, isPending, mutate, posts };
 };

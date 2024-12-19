@@ -1,12 +1,12 @@
+import Loader from "@/components/global/loader";
+import SubscriptionPlan from "@/components/global/subscription-plan";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AUTOMATION_LISTENERS } from "@/constants/automation";
 import { useListener } from "@/hooks/use-automation";
 import { cn } from "@/lib/utils";
-import SubscriptionPlan from "../../subscription-plan";
-import TriggerButton from "./trigger-button";
-import { Button } from "@/components/ui/button";
-import Loader from "../../loader";
+import TriggerButton from "../trigger-button";
 
 type Props = {
   id: string;
