@@ -6,6 +6,7 @@ import { usePath } from "@/hooks/user-nav";
 import { HelpDuoToneWhite } from "@/icons";
 import { LogoSmall } from "@/svgs/logo-small";
 import { Menu } from "lucide-react";
+import MainBreadCrumbs from "../bread-crumb/main-bread-crumbs";
 import ClerkAuthState from "../clerk-auth-state";
 import CreateAutomation from "../create-automation";
 import Sheet from "../sheet";
@@ -14,7 +15,6 @@ import UpgradeCard from "../sidebar/upgrade";
 import SubscriptionPlan from "../subscription-plan";
 import Notification from "./notification";
 import Search from "./search";
-import MainBreadCrumbs from "../bread-crumb/main-bread-crumbs";
 
 type Props = {
   slug: string;
