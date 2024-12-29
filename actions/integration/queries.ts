@@ -15,3 +15,44 @@ export const updateIntegration = async (
     },
   });
 };
+
+export const getIntegrations = async (clerkId: string) => {
+  return await client.user.findUnique({
+    where: {
+      clerkId,
+    },
+    select: {
+      integrations: {
+        where: {
+          name: "INSTAGRAM",
+        },
+      },
+    },
+  });
+};
+
+export const createIntegration = async (
+  clerkId: string,
+  token: string,
+  expire: Date,
+  insts_id: string
+) => {
+  return await client.user.update({
+    where: {
+      clerkId,
+    },
+    data: {
+      integrations: {
+        create: {
+          token,
+          expiresAt: expire,
+          instagramId: insts_id,
+        },
+      },
+    },
+    select: {
+      firstname: true,
+      lastname: true,
+    },
+  });
+};
