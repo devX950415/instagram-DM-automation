@@ -33,6 +33,32 @@ export const sendDm = async (
   );
 };
 
+export const sendPrivateMessage = async (
+  userId: string,
+  receiverId: string,
+  prompt: string,
+  token: string
+) => {
+  console.log("sending Message");
+  return await axios.post(
+    `${process.env.INSTAGRAM_BASE_URL}/${userId}/messages`,
+    {
+      recipient: {
+        comment_id: receiverId,
+      },
+      message: {
+        text: prompt,
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
 export const generateToken = async (code: string) => {
   const insta_form = new FormData();
   insta_form.append("client_id", process.env.INSTAGRAM_CLIENT_ID as string);
