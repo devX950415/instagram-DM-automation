@@ -7,7 +7,7 @@ import {
   matchKeyword,
   trackResponse,
 } from "@/actions/webhook/queries";
-import { sendDm } from "@/lib/fetch";
+import { sendDm, sendPrivateMessage } from "@/lib/fetch";
 import { openai } from "@/lib/openai";
 import { client } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
         if (automation && automation.trigger) {
           if (
             automation.listener &&
-            automation.listener?.listener === "MESSAGE"
+            automation.listener.listener === "MESSAGE"
           ) {
             const direct_message = await sendDm(
               body.entry[0].id,
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
           }
           if (
             automation.listener &&
-            automation.listener?.listener === "SMARTAI" &&
+            automation.listener.listener === "SMARTAI" &&
             automation.User?.subscription?.plan === "PRO"
           ) {
             const smart_ai_message = await openai.chat.completions.create({
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
               messages: [
                 {
                   role: "assistant",
-                  content: `${automation.listener.prompt}: Keep responses under 2 sentences.`,
+                  content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
                 },
               ],
             });
@@ -131,16 +131,16 @@ export async function POST(req: NextRequest) {
         );
 
         const automation_post = await getKeywordPost(
-          body.entry[0].changes[0].media.id,
+          body.entry[0].changes[0].value.media.id,
           automation?.id!
         );
 
         if (automation && automation_post && automation.trigger) {
           if (automation.listener) {
             if (automation.listener.listener === "MESSAGE") {
-              const direct_message = await sendDm(
+              const direct_message = await sendPrivateMessage(
                 body.entry[0].id,
-                body.entry[0].changes[0].value.from.id,
+                body.entry[0].changes[0].value.id,
                 automation.listener?.prompt,
                 automation.User?.integrations[0].token!
               );
@@ -169,7 +169,7 @@ export async function POST(req: NextRequest) {
                 messages: [
                   {
                     role: "assistant",
-                    content: `${automation.listener?.prompt}: Keep responses under 2 sentences.`,
+                    content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
                   },
                 ],
               });
@@ -191,10 +191,10 @@ export async function POST(req: NextRequest) {
 
                 await client.$transaction([receiver, sender]);
 
-                const direct_message = await sendDm(
+                const direct_message = await sendPrivateMessage(
                   body.entry[0].id,
                   body.entry[0].changes[0].value.from.id,
-                  smart_ai_message.choices[0].message.content,
+                  automation.listener?.prompt,
                   automation.User?.integrations[0].token!
                 );
 
@@ -235,7 +235,7 @@ export async function POST(req: NextRequest) {
             messages: [
               {
                 role: "assistant",
-                content: `${automation.listener?.prompt}: Keep responses under 2 sentences.`,
+                content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
               },
               ...customer_history.history,
               {
