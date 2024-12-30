@@ -20,6 +20,14 @@ function AutomationList({}: Props) {
 
   const { pathname } = usePath();
 
+  const optimisticUiData = useMemo(() => {
+    if (latestVariable && latestVariable?.variables && data) {
+      const newData = [latestVariable.variables, ...data.data];
+      return { data: newData };
+    }
+    return data || { data: [] };
+  }, [latestVariable, data]);
+
   if (data?.status !== 200 || data?.data.length <= 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
@@ -28,14 +36,6 @@ function AutomationList({}: Props) {
       </div>
     );
   }
-
-  const optimisticUiData = useMemo(() => {
-    if (latestVariable && latestVariable?.variables && data) {
-      const newData = [latestVariable.variables, ...data.data];
-      return { data: newData };
-    }
-    return data || { data: [] };
-  }, [latestVariable, data.data]);
 
   return (
     <div className="flex flex-col gap-y-3">
@@ -53,21 +53,27 @@ function AutomationList({}: Props) {
 
             {automation.keywords.length > 0 ? (
               <div className="flex gap-x-2 flex-wrap mt-3">
-                <div
-                  className={cn(
-                    "rounded-full px-4 py-1 capitalize",
-                    (0 + 1) % 1 == 0 &&
-                      "bg-keyword-green/15 border-2 border-keyword-green",
-                    (1 + 1) % 2 == 0 &&
-                      "bg-keyword-purple/15 border-2 border-keyword-purple",
-                    (2 + 1) % 3 == 0 &&
-                      "bg-keyword-yellow/15 border-2 border-keyword-yellow",
-                    (3 + 1) % 4 == 0 &&
-                      "bg-keyword-red/15 border-2 border-keyword-red"
-                  )}
-                >
-                  Started
-                </div>
+                {
+                  // @ts-ignore
+                  automation.keywords.map((keyword, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "rounded-full px-4 py-1 capitalize",
+                        (0 + 1) % 1 == 0 &&
+                          "bg-keyword-green/15 border-2 border-keyword-green",
+                        (1 + 1) % 2 == 0 &&
+                          "bg-keyword-purple/15 border-2 border-keyword-purple",
+                        (2 + 1) % 3 == 0 &&
+                          "bg-keyword-yellow/15 border-2 border-keyword-yellow",
+                        (3 + 1) % 4 == 0 &&
+                          "bg-keyword-red/15 border-2 border-keyword-red"
+                      )}
+                    >
+                      {keyword.word}
+                    </div>
+                  ))
+                }
               </div>
             ) : (
               <div className="rounded-full border-2 mt-3 border-dashed border-white/60 px-3 py-1">

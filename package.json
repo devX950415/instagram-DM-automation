@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -58,7 +59,7 @@
     "react-hook-form": "^7.54.0",
     "react-redux": "^9.2.0",
     "react-resizable-panels": "^2.1.7",
-    "recharts": "^2.14.1",
+    "recharts": "^2.15.0",
     "sonner": "^1.7.0",
     "stripe": "^17.5.0",
     "tailwind-merge": "^2.5.5",
