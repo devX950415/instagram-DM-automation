@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
 
     if (matcher && matcher.automationId) {
       // keyword matcher
+      console.log("🤖 Matched");
 
       if (body.entry[0].messaging) {
         const automation = await getKeywordAutomation(
@@ -193,7 +194,7 @@ export async function POST(req: NextRequest) {
 
                 const direct_message = await sendPrivateMessage(
                   body.entry[0].id,
-                  body.entry[0].changes[0].value.from.id,
+                  body.entry[0].changes[0].value.id,
                   automation.listener?.prompt,
                   automation.User?.integrations[0].token!
                 );
@@ -279,11 +280,11 @@ export async function POST(req: NextRequest) {
       }
       return NextResponse.json(
         { message: "No Automation set" },
-        { status: 404 }
+        { status: 200 }
       );
     }
-    return NextResponse.json({ message: "No Automation set" }, { status: 404 });
+    return NextResponse.json({ message: "No Automation set" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "No Automation set" }, { status: 500 });
+    return NextResponse.json({ message: "No Automation set" }, { status: 200 });
   }
 }
