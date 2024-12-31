@@ -85,7 +85,7 @@ export default function Home() {
             <div className="flex flex-col w-full max-md:ml-0 max-md:w-full">
               <div className="flex overflow-hidden flex-col w-full max-md:mt-10 max-md:max-w-full">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 mt-4">
                     <div className="h-8 w-8 rounded-lg bg-white text-black flex items-center justify-center font-bold">
                       li
                     </div>
@@ -98,9 +98,12 @@ export default function Home() {
                     <Link href="#pricing">Pricing</Link>
                     <Link href="#about">About</Link>
                   </nav>
-                  <Button className="bg-white text-black">
-                    <Link href="/dashboard">Login</Link>
-                  </Button>
+
+                  <Link href="/dashboard">
+                    <Button className="bg-white text-black px-7 font-semibold">
+                      Login
+                    </Button>
+                  </Link>
                 </div>
                 {/* Rest of the component implementation follows with the extracted components */}
                 {/* Features section */}
@@ -119,19 +122,23 @@ export default function Home() {
                         </p>
                       </div>
                       <div className="flex gap-4 items-start self-start mt-8 text-base">
-                        <Button
-                          size="lg"
-                          className="bg-blue-600 text-white hover:bg-blue-700"
-                        >
-                          Get Started
-                        </Button>
-                        <Button
-                          size="lg"
-                          variant="outline"
-                          className="border-blue-400  hover:bg-blue-900/50"
-                        >
-                          Learn More
-                        </Button>
+                        <Link href="/dashboard">
+                          <Button
+                            size="lg"
+                            className="bg-blue-600 text-white hover:bg-blue-700"
+                          >
+                            Get Started
+                          </Button>
+                        </Link>
+                        <Link href="/dashboard">
+                          <Button
+                            size="lg"
+                            variant="outline"
+                            className="border-blue-400  hover:bg-blue-900/50"
+                          >
+                            Learn More
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                     <div className="flex relative flex-1 shrink gap-4 items-start my-auto basis-20 min-h-[900px] min-w-[240px] max-md:max-w-full">
