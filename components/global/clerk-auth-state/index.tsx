@@ -14,7 +14,6 @@ function ClerkAuthState({}: Props) {
           <></>
         </Loader>
       </ClerkLoading>
-      {/* @ts-expect-error Server Component */}
       <SignedOut>
         <SignInButton>
           <Button className="rounded-xl bg-[#252525] text-white hover:bg-[#252525]">
@@ -23,7 +22,6 @@ function ClerkAuthState({}: Props) {
           </Button>
         </SignInButton>
       </SignedOut>
-
       <SignedIn>
         <UserButton>
           <UserButton.UserProfileLink
