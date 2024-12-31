@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { PLANS } from "@/constants/pages";
+import { useSubscription } from "@/hooks/use-subscription";
 import { cn } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
-import React from "react";
 
 type Props = {
   label: string;
@@ -11,6 +11,8 @@ type Props = {
 };
 
 function PaymentCard({ label, current, landing }: Props) {
+  const { isProcessing, onSubscription } = useSubscription();
+
   return (
     <div
       className={cn(
@@ -41,7 +43,7 @@ function PaymentCard({ label, current, landing }: Props) {
           </h2>
         )}
         <p className="text-text-secondary text-sm mb-2">
-          This is what your plan covers for automations and Ai features
+          This is what your plan covers for automation and Ai features
         </p>
         {label === "PRO" ? (
           <span className="bg-gradient-to-r text-3xl from-indigo-500 via-purple-500 font-bold to-pink-500 bg-clip-text text-transparent">
@@ -81,7 +83,8 @@ function PaymentCard({ label, current, landing }: Props) {
         ) : (
           <Button
             className="rounded-full mt-5 bg-background-80 text-white hover:text-background-80"
-            disabled={label === current}
+            disabled={label === current || isProcessing}
+            onClick={onSubscription}
           >
             {label === current
               ? "Active"
