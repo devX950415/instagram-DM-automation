@@ -14,12 +14,10 @@ export const onCurrentUser = async () => {
   return user;
 };
 
-export const OnboardUser = async () => {
-  const user = await currentUser();
+export const onboardUser = async () => {
+  const user = await onCurrentUser();
 
   try {
-    if (!user) return redirect("/sign-in");
-
     const found = await findUser(user.id);
 
     if (found) {
@@ -62,6 +60,9 @@ export const OnboardUser = async () => {
       user.lastName!,
       user.emailAddresses[0].emailAddress
     );
+
+    console.log("🧊🧊🧊");
+
     return { status: 201, data: created };
   } catch (error: any) {
     return { status: 500, data: error.message };
