@@ -18,7 +18,6 @@ type Props = {
 
 function Trigger({ id }: Props) {
   const { isPending, onSaveTrigger, onSetTrigger, types } = useTrigger(id);
-  console.log("🚀 ~ Trigger ~ types:", types);
   const { data } = useQueryAutomations(id);
 
   /*   const data = {
@@ -57,7 +56,7 @@ function Trigger({ id }: Props) {
               />
             </div>
             <ActiveTrigger
-              type={data.data.trigger[0].type}
+              type={data.data.trigger[1].type}
               keywords={data.data.keywords}
             />
           </>
@@ -102,5 +101,4 @@ function Trigger({ id }: Props) {
   );
 }
 
-//6.55
 export default Trigger;

@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { AUTOMATION_LISTENERS } from "@/constants/automation";
 import { useListener } from "@/hooks/use-automation";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import TriggerButton from "../trigger-button";
 
 type Props = {
@@ -28,7 +29,10 @@ function ThenActions({ id }: Props) {
           listener.type === "SMARTAI" ? (
             <SubscriptionPlan key={listener.id} type="PRO">
               <div
-                onClick={() => onSetListener(listener.type)}
+                //onClick={() => onSetListener(listener.type)}
+                onClick={() =>
+                  toast("Sorry, This moment not available SMART-AI Fetcher")
+                }
                 key={listener.id}
                 className={cn(
                   Listener === listener.type
