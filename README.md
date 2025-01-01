@@ -301,15 +301,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Sashen - [@twitter_handle](https://twitter.com/SashenHasinduJ) - sashenjayathilaka95@gmail.com
 
-Project Link: [https://github.com/SashenJayathilaka/Airbnb-Build.git](https://github.com/SashenJayathilaka/Airbnb-Build.git)
+Project Link: [https://github.com/SashenJayathilaka/SAAS-Instagram-DM-Automations.git](https://github.com/SashenJayathilaka/SAAS-Instagram-DM-Automations.git)
 
 <br />
 
-<!--
-<div align="center">
-<a href="https://airbnb-sclone.vercel.app"><img  src='https://user-images.githubusercontent.com/99184393/229773559-72e7f64a-361d-4285-976a-00a8919dd783.png' alt='image'/></a>
-</div>
--->
 <br />
 
 <div align="center">Don't forget to leave a star ⭐️</div>
