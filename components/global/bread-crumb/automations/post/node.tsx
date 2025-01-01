@@ -33,11 +33,11 @@ function PostNode({ id }: Props) {
             <InstagramBlue />
             <p className="font-bold text-lg">These posts</p>
           </div>
-          <div className="flex gap-x-2 flex-wrap mt-3">
+          <div className="flex gap-2 flex-wrap mt-3">
             {data.data.posts.map((post) => (
               <div
                 key={post.id}
-                className="relative w-4/12 aspect-square rounded-lg cursor-pointer overflow-hidden"
+                className="relative w-[190px] aspect-square rounded-lg cursor-pointer overflow-hidden"
               >
                 <Image fill sizes="100vw" src={post.media} alt="image" />
               </div>
