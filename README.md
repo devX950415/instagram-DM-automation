@@ -56,7 +56,7 @@
 <a href="https://slideproject.vercel.app/"><img  src='https://github.com/user-attachments/assets/001cf5c4-4d3a-42d0-9bdb-c514874041dd' alt='image'/></a>
 </div>
 
-## <a href="https://miro-clone-jade.vercel.app" target="_blank">LIVE DEMO 💥</a>
+## <a href="https://slideproject.vercel.app/" target="_blank">LIVE DEMO 💥</a>
 
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 ![forthebadge](https://forthebadge.com/images/badges/for-you.svg)
@@ -228,7 +228,7 @@ Add the `@tailwind` directives for each of Tailwind’s layers to your `./styles
 
 Install dependencies
 
-<a href="https://github.com/SashenJayathilaka/Airbnb-Build/blob/master/package.json" target="_blank">🔶 Dependency Info</a>
+<a href="https://github.com/SashenJayathilaka/SAAS-Instagram-DM-Automations/blob/main/package.json" target="_blank">🔶 Dependency Info</a>
 
 <!-- Run Locally -->
 
