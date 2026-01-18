@@ -297,14 +297,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## :handshake: Contact
-
-Sashen - [@twitter_handle](https://twitter.com/SashenHasinduJ) - sashenjayathilaka95@gmail.com
-
-Project Link: [https://github.com/SashenJayathilaka/SAAS-Instagram-DM-Automations.git](https://github.com/SashenJayathilaka/SAAS-Instagram-DM-Automations.git)
-
-<br />
-
-<br />
 
 <div align="center">Don't forget to leave a star ⭐️</div>
